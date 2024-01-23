@@ -16,10 +16,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh "sudo cp ./target/hello-world-1.0.war /etc/tomcat/webapps/"
+                sh "sudo systemctl restart tomcat"
             }
         }
         stage('Artifacts') {
             steps {
+                junit '**/target/surefire-reports/TEST-*.xml'
                 archiveArtifacts 'target/*.war'
             }
         }

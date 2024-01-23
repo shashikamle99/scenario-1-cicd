@@ -62,7 +62,7 @@ ExecStop=/etc/tomcat/bin/shutdown.sh
 WantedBy=multi-user.target
 ```
 
-* After adding tomcat.service then restart the tomcat service
+* After adding tomcat.service file then restart the tomcat service
 ```
 sudo systemctl daemon-reload
 
@@ -86,7 +86,7 @@ mvn -version
 mvn archetype:generate -DgroupId=com.app.example -DartifactId=java-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
-* After creating floder structure
+* After created folder structure
 
 
 
@@ -215,4 +215,10 @@ sudo cp java-app/target/hello-world-1.0.war /etc/tomcat/webapps/
 * Restart tomcat service:
 ```
 sudo systemctl restart tomcat
+```
+
+### For access html webpage
+
+```
+http://<public-ip-address>/hello-world-1.0
 ```

@@ -223,5 +223,5 @@ sudo systemctl restart tomcat
 http://<public-ip-address>:8080/hello-world-1.0
 ```
 ```
-http://:8080/hello-world-1.0
+http:// :8080/hello-world-1.0
 ```

@@ -15,7 +15,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "cp ./target/hello-world-1.0.war /etc/tomcat/webapps/"
+                sh "sudo cp ./target/hello-world-1.0.war /etc/tomcat/webapps/"
+            }
+        }
+        stage('Artifacts') {
+            steps {
+                archiveArtifacts 'target/*.war'
             }
         }
     }

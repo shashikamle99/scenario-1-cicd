@@ -14,25 +14,27 @@ java -version
 
 ### Tomcat Install on Ubuntu steps:
 
+* Download tomcat 
+[Refer here for download tomcat](https://tomcat.apache.org/download-90.cgi)
 ```
 wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.zip
+```
 
-tar -xf apache-tomcat-9.0.85.zip -C /etc/
+```
+sudo unzip apache-tomcat-9.0.85.zip -d /etc/
 
-mv /etc/apache-tomcat-9.0.85/ /etc/tomcat/ 
+sudo mv /etc/apache-tomcat-9.0.85/ /etc/tomcat/ 
 
 sudo chmod +x /etc/tomcat/bin/*.sh
-
-sudo systemctl daemon-reload
-
-sudo systemctl start tomcat
 ```
+
+
+
+####  Note: Run the following command and add below file into tomcat.service
 
 ```
 sudo nano /etc/systemd/system/tomcat.service
 ```
-
-####  Note: add below file into tomcat.service
 
 ```
 [Unit]
@@ -60,6 +62,13 @@ ExecStop=/etc/tomcat/bin/shutdown.sh
 WantedBy=multi-user.target
 ```
 
+* After adding tomcat.service then restart the tomcat service
+```
+sudo systemctl daemon-reload
+
+sudo systemctl start tomcat
+```
+
 ### Install maven:
 
 ```
@@ -79,11 +88,19 @@ mvn archetype:generate -DgroupId=com.app.example -DartifactId=java-app -Darchety
 
 * After creating floder structure
 
+
+
+####  Note: Run the following command and add below file into pom.xm
+
+* Change the directory to /java-app
 ```
-sudo nano /java-app/pom.xml
+cd /java-app
 ```
 
-####  Note: add below file into pom.xm
+
+```
+sudo nano /pom.xml
+```
 
 ```
 <?xml version = "1.0" encoding = "UTF-8"?>
@@ -95,7 +112,7 @@ xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/
 
    <groupId>com.tutorialspoint</groupId>
    <artifactId>hello-world</artifactId>
-   <version>1</version>
+   <version>1.0</version>
    <packaging>war</packaging>
    
    <parent>
@@ -143,10 +160,17 @@ xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/
 
 ## Create the java application: 
 
+* Change the directory /java-app
 ```
-sudo nano /java-app/src/main/java/com/app/example/App.java
+cd /java-app
 ```
-* Note: add below file App.java
+
+
+* Note: Run the following command and add below file App.java
+
+```
+sudo nano /src/main/java/com/app/example/App.java
+```
 
 ```
 package com.app.example;
@@ -171,7 +195,7 @@ public class App extends SpringBootServletInitializer {
 
    @RequestMapping(value = "/")
    public String hello() {
-      return "<center>Hello World Aahhh Mantaapp</center>";
+      return "<center>Hello World Welcome..!!</center>";
    }
 }
 ```
@@ -185,7 +209,7 @@ mvn package
 ### Deploy the Application to application to Tomcat directory:
 
 ```
-sudo cp java-app/target/hello-world-1.war /etc/tomcat/webapps/
+sudo cp java-app/target/hello-world-1.0.war /etc/tomcat/webapps/
 ```
 
 * Restart tomcat service:

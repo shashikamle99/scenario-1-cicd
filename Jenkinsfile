@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git url: https://github.com/shashikamle99/scenario-1-cicd.git
+                git url: 'https://github.com/shashikamle99/scenario-1-cicd.git'
             }
         }
         stage('Build') {

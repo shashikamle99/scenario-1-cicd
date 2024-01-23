@@ -15,6 +15,8 @@ java -version
 
 #### Install jenkins
 
+[Refer here Jenkins official docs](https://www.jenkins.io/doc/book/installing/linux/#debianubuntu)
+
 ```
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
@@ -30,7 +32,7 @@ sudo apt-get install jenkins
 jenkins --version
 ```
 
-[Refer here Jenkins official docs](https://www.jenkins.io/doc/book/installing/linux/#debianubuntu)
+
 
 #### Jenkins add to sudoers group
 ```

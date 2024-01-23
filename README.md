@@ -220,5 +220,5 @@ sudo systemctl restart tomcat
 ### For access html webpage
 
 ```
-http://<public-ip-address>/hello-world-1.0
+http://<public-ip-address>:8080/hello-world-1.0
 ```

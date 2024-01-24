@@ -19,9 +19,13 @@ pipeline {
                 sh "sudo systemctl restart tomcat"
             }
         }
-        stage('Artifacts') {
+        stage('Reports') {
             steps {
                 junit '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
+        stage('Artifacts') {
+            steps {
                 archiveArtifacts 'target/*.war'
             }
         }

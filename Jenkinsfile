@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'maven'}
+    triggers {
+        pollSCM ('* * * * *')
+    }
 
     stages {
         stage('SCM') {
@@ -19,7 +22,7 @@ pipeline {
                 sh "sudo systemctl restart tomcat"
             }
         }
-        stage('Reports') {
+        stage('junit reports') {
             steps {
                 junit '**/target/surefire-reports/TEST-*.xml'
             }

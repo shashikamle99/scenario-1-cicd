@@ -5,7 +5,7 @@
 ### Install Java 11:
 
 ```
-sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-17-jdk -y
 ```
 * Jave version check
 ```

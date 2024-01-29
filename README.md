@@ -69,6 +69,12 @@ sudo systemctl daemon-reload
 sudo systemctl start tomcat
 ```
 
+* Tomcat service enable
+```
+sudo systemctl enable tomcat
+``` 
+
+
 ### Install maven:
 
 ```

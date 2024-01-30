@@ -38,6 +38,12 @@ pipeline {
                 )
             }
         }
+        
+        stage('junit reports') {
+            steps {
+                junit '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
 
         stage('Deploy') {
             steps {

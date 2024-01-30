@@ -24,8 +24,8 @@ pipeline {
                 rtMavenDeployer (
                     id: "JAVA-DEPLOYER",
                     serverId: "jfrog-artifactory",
-                    releaseRepo: 'libs-release-local',
-                    snapshotRepo: 'libs-snapshot-local'
+                    releaseRepo: 'java-app-libs-release-local',
+                    snapshotRepo: 'java-app-libs-release-local'
                 )
                 rtMavenRun (
                     deployerId: "JAVA-DEPLOYER",
@@ -41,10 +41,10 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                deploy adapters: [tomcat9(url: 'http://13.56.59.186:8080', 
+                deploy adapters: [tomcat9(url: 'http://54.219.183.91:8080', 
                               credentialsId: 'Tomcat_Cred')], 
-                     war: '**/*.war',
-                     contextPath: 'app'
+                     war: '**/*.war'
+                    //  contextPath: 'app'
             }
         }
     }

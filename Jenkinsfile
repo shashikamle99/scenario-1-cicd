@@ -11,7 +11,7 @@ pipeline {
                 url: 'https://github.com/shashikamle99/scenario-1-cicd.git'
             }
         }
-        stage('SonarQube analysis') {
+        stage('SonarQube Analysis') {
           steps {
               withSonarQubeEnv('SONAR_CLOUD') {
                 sh "mvn sonar:sonar -Dsonar.projectKey=java-project-demo -Dsonar.organization=java-project-demo -Dsonar.token=a64e938e4479814e8dd3a080e2b085270f7d884b"
@@ -19,7 +19,7 @@ pipeline {
             } 
         }    
         
-        stage('build and artifactory') {
+        stage('Build and Artifactory') {
             steps{
                 rtMavenDeployer (
                     id: "JAVA-DEPLOYER",
@@ -39,7 +39,7 @@ pipeline {
             }
         }
         
-        stage('junit reports') {
+        stage('Junit Reports') {
             steps {
                 junit '**/target/surefire-reports/TEST-*.xml'
             }

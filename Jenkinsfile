@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'java-builder'}
 
     stages {
         stage('SCM') {
@@ -8,7 +8,15 @@ pipeline {
                 url: 'https://github.com/shashikamle99/scenario-1-cicd.git'
             }
         }
-        stage('build') {
+        stage('SonarQube analysis') {
+          steps {
+              withSonarQubeEnv('SONAR_CLOUD') {
+                sh "mvn sonar:sonar -Dsonar.projectKey=java-project-demo -Dsonar.organization=java-project-demo -Dsonar.token=a64e938e4479814e8dd3a080e2b085270f7d884b"
+                }
+            } 
+        }    
+
+        stage('build and artifactory') {
             steps{
                 rtMavenDeployer (
                     id: "JAVA-DEPLOYER",
@@ -28,10 +36,10 @@ pipeline {
             }
         }
 
-        // stage('Deploy') {
-        //     steps {
-        //         sh "cp ./target/hello-world-1.0.war /etc/tomcat/webapps/"
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+                sh "cp ./target/hello-world-1.0.war /etc/tomcat/webapps/"
+            }
+        }
     }
 }

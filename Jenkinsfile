@@ -20,7 +20,7 @@ pipeline {
                     deployerId: "JAVA-DEPLOYER",
                     tool: "Maven-3.6.3",
                     pom: 'pom.xml',
-                    goals: 'mvn install'
+                    goals: 'clean install'
                 )
                 rtPublishBuildInfo (
                     serverId: "jfrog-artifactory"

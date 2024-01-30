@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'java-builder'}
+    triggers {
+        pollSCM ('* * * * *')
+    }
 
     stages {
         stage('SCM') {

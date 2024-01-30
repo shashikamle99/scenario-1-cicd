@@ -18,7 +18,7 @@ pipeline {
                 }
             } 
         }    
-
+        
         stage('build and artifactory') {
             steps{
                 rtMavenDeployer (

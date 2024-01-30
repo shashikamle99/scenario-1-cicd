@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'java-builder'}
     triggers {
         pollSCM ('* * * * *')
     }
@@ -41,10 +41,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                deploy adapters: [tomcat9(url: 'http://13.56.59.186:8080', 
-                              credentialsId: 'Tomcat_Cred')], 
-                     war: '**/*.war',
-                     contextPath: 'app'
+                sh "cp ./target/hello-world-1.0.war /etc/tomcat/webapps/"
             }
         }
     }

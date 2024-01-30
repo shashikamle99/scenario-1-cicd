@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM ('* * * * *')
+    }
+
+    stages {
+        stage('SCM') {
+            steps {
+                git branch: 'dev',
+                url: 'https://github.com/shashikamle99/scenario-1-cicd.git'
+            }
+        }
+        stage('build') {
+            steps {
+                sh "mvn clean install"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                deploy adapters: [tomcat9(url: 'http://54.219.183.91:8080', 
+                              credentialsId: 'Tomcat_Cred')], 
+                     war: '**/*.war',
+                     contextPath: 'app'
+            }
+        } 
+    }
+}

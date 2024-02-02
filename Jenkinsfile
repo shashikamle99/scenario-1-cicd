@@ -14,7 +14,7 @@ pipeline {
         stage('SonarQube Analysis') {
           steps {
               withSonarQubeEnv('SONAR_CLOUD') {
-                sh "mvn sonar:sonar -Dsonar.projectKey=java-project-demo -Dsonar.organization=java-project-demo -Dsonar.token=f240b887c2046b6180d38e174df58002e2bfa54d"
+                sh "mvn sonar:sonar -Dsonar.projectKey=java-app-tomcat -Dsonar.organization=java-project-demo -Dsonar.token=f240b887c2046b6180d38e174df58002e2bfa54d"
                 }
             } 
         }    
@@ -45,13 +45,13 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                deploy adapters: [tomcat9(url: 'http://172.31.18.83:8080', 
-                              credentialsId: 'Tomcat_Cred')], 
-                     war: '**/*.war'
-                    //  contextPath: 'app'
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         deploy adapters: [tomcat9(url: 'http://172.31.18.83:8080', 
+        //                       credentialsId: 'Tomcat_Cred')], 
+        //              war: '**/*.war'
+        //             //  contextPath: 'app'
+        //     }
+        // }
     }
 }

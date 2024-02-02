@@ -7,7 +7,7 @@ xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/
 
    <groupId>com.java-app</groupId>
    <artifactId>hello-world</artifactId>
-   <version>2.0</version>
+   <version>3.0</version>
    <packaging>war</packaging>
    
    <parent>

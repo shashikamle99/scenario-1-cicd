@@ -10,7 +10,7 @@ curl -fsSL https://get.docker.com -o install-docker.sh
 sh install-docker.sh
 ```
 
-#### we need to add users to the Docker group to grant them appropriate permissions. Run the following commands to add users to the Docker group
+#### We need to add users to the Docker group to grant them appropriate permissions. Run the following commands to add users to the Docker group
 
 ```
 sudo usermod -aG docker $USER

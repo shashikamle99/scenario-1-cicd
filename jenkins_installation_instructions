@@ -1,0 +1,47 @@
+Jenkins install on Ubuntu 22.04:
+-------------------------------
+## jdk install
+
+sudo apt update
+sudo apt install openjdk-17-jdk -y
+java -version
+
+## Install Jenkins:
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+  
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+  
+sudo apt-get update
+sudo apt-get install jenkins -y
+
+## Create user and add to "sudo" group
+
+For example user name is: jenkins
+
+vi sudo
+jenkins   ALL=(ALL:ALL) NOPASSWD:ALL
+
+## Password Auntheticatio enable 
+
+sudo vi /etc/ssh/sshd_config
+
+Note: enable bewlow options and after that restart ssh service
+
+PasswordAuthentication yes
+
+KbdInteractiveAuthentication yes 
+
+sudo systemctl restart ssh
+
+sudo systemctl status ssh
+
+
+## error: java.io.IOException: http://52.90.193.168:8080/tcpSlaveAgentListener/ is invalid: 404 Not Found
+
+Then go to > Manage Jenkins > Security > Agents
+
+TCP port for inbound agents select "Fixed" put 50000 port 
